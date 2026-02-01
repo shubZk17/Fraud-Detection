@@ -1,18 +1,32 @@
-# Fraud Detection System – End‑to‑End ML Project
+# 🚨 End-to-End Fraud Detection System (Banking & FinTech)
 
-## 1. Project Overview
+## 📌 Project Overview
 
-This project builds a **production‑oriented fraud detection system** for the banking/payments domain. The goal is not only to train a high‑performing ML model, but to **translate model outputs into human‑understandable decisions** that can be consumed by non‑technical users.
+This project is a **production-oriented, end-to-end fraud detection system** built using real-world banking data (IEEE-CIS Fraud Detection dataset).
 
-The system is designed in **three clear phases**:
+Unlike notebook-only ML projects, this system focuses on:
+- **Decision intelligence**
+- **Explainability**
+- **Deployment-ready architecture**
 
-1. **Modeling & Explainability** – Data analysis, feature engineering, XGBoost modeling, SHAP‑based explainability
-2. **Business Communication** – Insight‑focused dashboards (Power BI) for stakeholders
-3. **Production Deployment** – Real‑time inference with FastAPI + Streamlit, returning risk levels and human‑readable reasons
-
-This mirrors how fraud systems are built in real banks and fintech companies.
+The system predicts fraud risk, explains *why* a transaction was flagged, and exposes results via a **FastAPI backend** with a **Streamlit UI** for non-technical users.
 
 ---
+
+## 🧠 Key Features
+
+- Large-scale fraud dataset (IEEE-CIS)
+- Time-aware feature engineering (no data leakage)
+- XGBoost model for highly imbalanced fraud data
+- SHAP-based explainability with stable, human-readable reason codes
+- Business-level risk bucketing & recommended actions
+- FastAPI backend (single + batch inference)
+- Streamlit UI for live demo and presentation
+- Production-safe handling of missing real-time features
+
+---
+
+
 
 ## 2. Dataset
 
@@ -26,41 +40,7 @@ The dataset is intentionally split to simulate real banking systems where transa
 
 ---
 
-## 3. Project Objectives
-
-* Build a robust fraud detection model using tree‑based ML (XGBoost)
-* Handle class imbalance and time‑based validation correctly
-* Use SHAP internally for explainability
-* Convert ML explanations into **plain‑language reason codes**
-* Present insights through dashboards understandable by non‑technical users
-* Deploy an end‑to‑end inference pipeline
-
----
-
-## 4. High‑Level Architecture
-
-**Phase 1 – Modeling (Notebook‑Driven)**
-
-* Data pre-processing , EDA
-* Feature engineering (transaction‑level + behavioral)
-* Baseline models → advanced XGBoost model
-* SHAP analysis (global & local)
-
-**Phase 2 – Communication (Power BI)**
-
-* Risk distribution trends
-* Top fraud drivers (human‑readable)
-* High‑risk transaction summaries
-
-**Phase 3 – Production (API + UI)**
-
-* FastAPI inference service
-* SHAP‑derived reason code generation
-* Streamlit UI for user input & results
-
----
-
-## 5. Repository Structure
+## 3. Repository Structure
 
 ```
 fraud-detection/
@@ -91,8 +71,6 @@ fraud-detection/
 ├── ui/                       # Streamlit application
 │   ├── app.py
 │
-├── dashboards/               # Power BI files / exports
-│   ├── fraud_dashboard.pbix
 │
 ├── requirements.txt
 ├── .gitignore
@@ -100,68 +78,32 @@ fraud-detection/
 └── .venv/                    # Virtual environment (not committed)
 ```
 
----
 
-## 6. Explainability Strategy (Key Design Decision)
-
-* SHAP is used **internally** to understand model behavior
-* End users never see SHAP values or plots
-* SHAP outputs are mapped to **reason codes**, e.g.:
-
-  * "Unusually high transaction amount"
-  * "New or unknown device detected"
-  * "High transaction velocity"
-
-This ensures trust, consistency, and regulatory alignment.
 
 ---
 
-## 7. Model Output Design (User‑Facing)
+## ⚙️ How to Run Locally
 
-Instead of probabilities, the system returns:
+### 1️⃣ Clone the Repository
 
-* **Risk Level**: Low / Medium / High / Very High
-* **Reasons**: Top 2–3 human‑readable explanations
-* **Recommended Action**: Allow / Verify / Hold / Block
+```bash
+git clone https://github.com/<your-username>/fraud-detection.git
+cd fraud-detection
+```
 
-This design prioritizes decision clarity over raw metrics.
+```bash
+python -m venv .venv
+```
+```bash
+.venv\Scripts\activate
+```
 
----
-
-## 8. Tech Stack
-
-* **Python** – Core language
-* **Pandas / NumPy** – Data processing
-* **XGBoost** – Fraud classification model (Best performing model in Kaggle IEE- CIS Fraude detection challange in 2019)
-* **SHAP** – Model explainability (internal)
-* **FastAPI** – Inference service
-* **Streamlit** – Interactive UI
-* **Power BI** – Business dashboards
-
----
-
-## 9. Development Phases & Milestones
-
-**Phase 1 – Modeling (Current Focus)**
-
-* Complete EDA and feature engineering
-* Train and validate XGBoost model
-* Perform SHAP analysis
-
-**Phase 2 – Communication**
-
-* Create Power BI dashboard from aggregated outputs
-
-**Phase 3 – Deployment**
-
-* Build FastAPI inference API
-* Build Streamlit UI
-* End‑to‑end demo
-
----
-
-## 10. Notes
-
-* Raw data files are excluded from Git
-* The project emphasizes **decision intelligence**, not just ML accuracy
-* Structure is designed to scale to production‑grade systems
+```bash
+pip install -r requirements.txt
+```
+```bash
+python -m uvicorn api.main:app --reload
+```
+```bash
+streamlit run ui/app.py
+```
