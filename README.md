@@ -110,7 +110,8 @@ streamlit run ui/app.py
 
 
 ## Live Link
-bash```
+
+```
 https://shubzk17-fraud-detection-uiapp-9nvkgf.streamlit.app/
 ```
 
