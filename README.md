@@ -82,9 +82,9 @@ fraud-detection/
 
 ---
 
-## ⚙️ How to Run Locally
+## 4. How to Run Locally
 
-### 1️⃣ Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/<your-username>/fraud-detection.git
@@ -107,3 +107,6 @@ python -m uvicorn api.main:app --reload
 ```bash
 streamlit run ui/app.py
 ```
+
+
+
