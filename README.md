@@ -87,7 +87,7 @@ fraud-detection/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/fraud-detection.git
+git clone https://github.com/shubzk17/fraud-detection.git
 cd fraud-detection
 ```
 
